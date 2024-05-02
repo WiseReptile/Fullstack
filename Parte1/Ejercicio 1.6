@@ -1,0 +1,52 @@
+import {useDebugValue, useState} from 'react'
+
+const Button = ({handleClick, text}) => (<button onClick={handleClick}>{text}</button>)
+
+const title = 'Give feedback'
+
+
+const App = () => {
+  const [left, setLeft] = useState(0)
+  const [center, setCenter] = useState(0)
+  const [right, setRight] = useState(0)
+
+
+  const handleLeftClick = () => {
+    const updatedLeft = left + 1
+    setLeft(updatedLeft)
+    
+  }
+
+  const handleCenterClick = () => {
+    const updatedCenter = center + 1
+    setCenter(updatedCenter)
+    
+  }
+
+
+  const handleRightClick = () => {
+    const updatedRight = right + 1
+    setRight(updatedRight)
+    
+  }
+
+  return (
+    <div>
+      <h1>{title}</h1>
+      
+      <Button handleClick={handleLeftClick} text = 'Good'/>
+      <Button handleClick={handleCenterClick} text = 'Neutral'/>
+      <Button handleClick={handleRightClick} text = 'Bad'/>
+      
+
+      <h1>Statistics</h1>
+      
+      <p>Good: {left}</p>
+      <p>Neutral: {center}</p>
+      <p>Bad: {right}</p>
+
+    </div>
+  )
+}
+
+export default App;
