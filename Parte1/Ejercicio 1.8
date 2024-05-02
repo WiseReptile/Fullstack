@@ -1,0 +1,64 @@
+import {useDebugValue, useState} from 'react'
+
+const Button = ({handleClick, text}) => (<button onClick={handleClick}>{text}</button>)
+
+const title = 'Give feedback'
+
+const Statistics = ({good, neutral, bad}) => {
+  const total = good + neutral + bad
+  const average = (good - bad) / total
+  const positive = (good / total) * 100
+
+  return (
+    <div>
+      <h1>Statistics</h1>
+      <p>Good: {good}</p>
+      <p>Neutral: {neutral}</p>
+      <p>Bad: {bad}</p>
+      <p>Total: {total}</p>
+      <p>Average: {average}</p>
+      <p>Positive: {positive} %</p>
+    </div>
+  )
+}
+
+const App = () => {
+  const [left, setLeft] = useState(0)
+  const [center, setCenter] = useState(0)
+  const [right, setRight] = useState(0)
+
+
+  const handleLeftClick = () => {
+    const updatedLeft = left + 1
+    setLeft(updatedLeft)
+    
+  }
+
+  const handleCenterClick = () => {
+    const updatedCenter = center + 1
+    setCenter(updatedCenter)
+    
+  }
+
+
+  const handleRightClick = () => {
+    const updatedRight = right + 1
+    setRight(updatedRight)
+    
+  }
+
+  return (
+    <div>
+      <h1>{title}</h1>
+      
+      <Button handleClick={handleLeftClick} text = 'Good'/>
+      <Button handleClick={handleCenterClick} text = 'Neutral'/>
+      <Button handleClick={handleRightClick} text = 'Bad'/>
+      
+      <Statistics good={left} neutral={center} bad={right}/>
+
+    </div>
+  )
+}
+
+export default App;
